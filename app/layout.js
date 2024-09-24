@@ -24,7 +24,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={`${creepyFont.variable} ${pixelFont.variable} antialiased font-body`}>{children}</body>
+			<body
+				className={`${creepyFont.variable} ${pixelFont.variable} antialiased font-body h-full bg-neutral-900 relative`}
+			>
+				{children}
+			</body>
 			<GoogleAnalytics gaId="G-WR031DMPZQ" />
 		</html>
 	)

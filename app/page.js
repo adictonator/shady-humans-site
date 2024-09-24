@@ -1,19 +1,50 @@
-import React from 'react'
+'use client'
+
+import Image from 'next/image'
+import React, { useState, useEffect, useRef } from 'react'
 
 const LaunchingSoon = () => {
-	return (
-		<div className="flex flex-col justify-center items-center p-4 min-h-screen overflow-hidden">
-			<div className="absolute inset-0 z-0 bg-[url(./images/dark-bg.webp)] bg-no-repeat bg-cover bg-center grayscale mix-blend-color-dodge opacity-75"></div>
+	const [isPlaying, setIsPlaying] = useState(false)
+	const audioRef = useRef(null)
 
-			<div className="z-10 text-center space-y-8 sm:space-y-12 max-w-4xl w-full px-4 sm:px-6 lg:px-8">
+	useEffect(() => {
+		audioRef.current = new Audio('/spooky-wind.mp3')
+		audioRef.current.loop = true
+
+		return () => {
+			if (audioRef.current) {
+				audioRef.current.pause()
+				audioRef.current.src = ''
+			}
+		}
+	}, [])
+
+	useEffect(() => {
+		if (audioRef.current) {
+			if (isPlaying) {
+				audioRef.current.play().catch((error) => console.error('Audio playback failed:', error))
+			} else {
+				audioRef.current.pause()
+			}
+		}
+	}, [isPlaying])
+
+	const toggleSound = () => {
+		setIsPlaying(!isPlaying)
+	}
+
+	return (
+		<div className="flex flex-col justify-center items-center p-4 min-h-svh">
+			<div className="absolute inset-0 z-0 bg-[url(./images/dark-bg.webp)] bg-no-repeat bg-cover bg-center grayscale md:mix-blend-color-dodge opacity-75"></div>
+			<div className="z-10 text-center space-y-8 sm:space-y-12 max-w-4xl h-full px-4 sm:px-6 lg:px-8">
 				<h1
-					className="text-8xl xl:text-9xl font-bold font-display relative hero glitch layers"
+					className="text-7xl xl:text-9xl font-bold font-display relative hero glitch layers overflow-hidden"
 					data-text="Scary Humans"
 				>
 					Shady Humans
 				</h1>
 				<p
-					className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-200"
+					className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-stone-400 to-slate-200"
 					data-glitch
 					title="Where Shadows Whisper and Humanity Unravels..."
 				>
@@ -34,6 +65,18 @@ const LaunchingSoon = () => {
 					</span>
 				</div>
 			</div>
+			{/* Sound toggle switch */}
+			<button
+				onClick={toggleSound}
+				className="block absolute bottom-4 left-4 my-4 md:fixed md:bottom-4 w-fit md:mx-auto bg-gray-400/50 p-2 z-50 rounded"
+				aria-label={isPlaying ? 'Mute background sound' : 'Unmute background sound'}
+			>
+				{isPlaying ? (
+					<Image src="/images/high-volume.png" alt="" width={24} height={24} />
+				) : (
+					<Image src="/images/mute.png" alt="" width={24} height={24} />
+				)}
+			</button>
 		</div>
 	)
 }
