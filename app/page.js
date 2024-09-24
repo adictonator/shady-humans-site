@@ -36,7 +36,7 @@ const LaunchingSoon = () => {
 	return (
 		<div className="flex flex-col justify-center items-center p-4 min-h-svh">
 			<div className="absolute inset-0 z-0 bg-[url(./images/dark-bg.webp)] bg-no-repeat bg-cover bg-center grayscale md:mix-blend-color-dodge opacity-75"></div>
-			<div className="z-10 text-center space-y-8 sm:space-y-12 max-w-4xl h-full px-4 sm:px-6 lg:px-8">
+			<div className="z-10 relative text-center space-y-8 sm:space-y-12 max-w-4xl h-full px-4 sm:px-6 lg:px-8">
 				<h1
 					className="text-7xl xl:text-9xl font-bold font-display relative hero glitch layers overflow-hidden"
 					data-text="Scary Humans"
@@ -64,19 +64,18 @@ const LaunchingSoon = () => {
 						stay.
 					</span>
 				</div>
+				<button
+					onClick={toggleSound}
+					className="block max-md:absolute bottom-2 left-2 my-4 md:inset-x-0 w-fit md:mx-auto bg-gray-400/50 p-2 z-50 rounded"
+					aria-label={isPlaying ? 'Mute background sound' : 'Unmute background sound'}
+				>
+					{isPlaying ? (
+						<Image src="/images/high-volume.png" alt="" width={24} height={24} />
+					) : (
+						<Image src="/images/mute.png" alt="" width={24} height={24} />
+					)}
+				</button>
 			</div>
-
-			<button
-				onClick={toggleSound}
-				className="block absolute bottom-4 left-4 my-4 md:fixed md:bottom-4 w-fit md:mx-auto bg-gray-400/50 p-2 z-50 rounded"
-				aria-label={isPlaying ? 'Mute background sound' : 'Unmute background sound'}
-			>
-				{isPlaying ? (
-					<Image src="/images/high-volume.png" alt="" width={24} height={24} />
-				) : (
-					<Image src="/images/mute.png" alt="" width={24} height={24} />
-				)}
-			</button>
 		</div>
 	)
 }
