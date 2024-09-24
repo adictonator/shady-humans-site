@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Press_Start_2P, Creepster } from 'next/font/google'
 import './globals.css'
 
@@ -23,11 +24,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body
-				className={`${creepyFont.variable} ${pixelFont.variable} antialiased font-body`}
-			>
-				{children}
-			</body>
+			<body className={`${creepyFont.variable} ${pixelFont.variable} antialiased font-body`}>{children}</body>
+			<GoogleAnalytics gaId="G-WR031DMPZQ" />
 		</html>
 	)
 }
