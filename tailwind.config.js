@@ -10,12 +10,6 @@ module.exports = {
 			display: ['var(--font-creepy)'],
 			body: ['var(--font-pixel)'],
 		},
-		extend: {
-			colors: {
-				background: 'var(--background)',
-				foreground: 'var(--foreground)',
-			},
-		},
 	},
 	plugins: [],
 }

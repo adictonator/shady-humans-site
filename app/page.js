@@ -65,7 +65,7 @@ const LaunchingSoon = () => {
 					</span>
 				</div>
 			</div>
-			{/* Sound toggle switch */}
+
 			<button
 				onClick={toggleSound}
 				className="block absolute bottom-4 left-4 my-4 md:fixed md:bottom-4 w-fit md:mx-auto bg-gray-400/50 p-2 z-50 rounded"
