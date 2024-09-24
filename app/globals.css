@@ -486,7 +486,6 @@ body {
 
 /* HedING GLITCH */
 .hero {
-	font-size: clamp(40px, 10vw, 100px);
 	line-height: 1;
 	display: inline-block;
 	z-index: 2;
